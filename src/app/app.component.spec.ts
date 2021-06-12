@@ -8,19 +8,27 @@ import { DataService } from './services/data.service'
 describe('AppComponent', () => {
   let component: AppComponent
   let fixture: ComponentFixture<AppComponent>
+  let compiled: any
+  let dataServiceSpy: any
+
+  const todos = of([
+    { id: 1, title: 'Buy food', completed: false },
+    { id: 2, title: 'Feed Cat', completed: true },
+  ])
 
   beforeEach(async () => {
-    const dataService = jasmine.createSpyObj('DataService', ['get'])
+    dataServiceSpy = jasmine.createSpyObj('DataService', ['get'])
+    dataServiceSpy.get.and.returnValue(todos)
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, AppModule],
-      providers: [{ provide: DataService, useValue: dataService }],
+      providers: [{ provide: DataService, useValue: dataServiceSpy }],
     }).compileComponents()
   })
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent)
     component = fixture.componentInstance
-    component.todos$ = of([])
+    compiled = fixture.nativeElement
     fixture.detectChanges()
   })
 
@@ -29,7 +37,11 @@ describe('AppComponent', () => {
   })
 
   it('should render title', () => {
-    const compiled = fixture.nativeElement
     expect(compiled.querySelector('h1').textContent).toContain('ABELFUBU')
+  })
+
+  it('should render tabs and a list of todos', () => {
+    expect(compiled.querySelector('lib-tab-group')).toBeTruthy()
+    expect(compiled.querySelectorAll('lib-tab').length).toEqual(3)
   })
 })

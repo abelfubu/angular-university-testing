@@ -3,8 +3,8 @@ import { DataService } from './services/data.service'
 
 @Component({
   selector: 'au-test-root',
-  template: ` <ng-container *ngIf="todos$ | async as todos">
-      <h1>ABELFUBU</h1>
+  template: ` <h1>ABELFUBU</h1>
+    <ng-container *ngIf="todos$ | async as todos">
       <lib-tab-group>
         <lib-tab title="Todos">
           <au-test-todo-list [todos]="todos"></au-test-todo-list>
@@ -29,7 +29,6 @@ import { DataService } from './services/data.service'
   styles: [],
 })
 export class AppComponent {
-  title = 'angular-university-testing'
   todos$ = this.dataService.get()
 
   constructor(private dataService: DataService) {}
