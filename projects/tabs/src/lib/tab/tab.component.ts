@@ -3,7 +3,7 @@ import { Component, ElementRef, Input } from '@angular/core'
 @Component({
   selector: 'lib-tab',
   templateUrl: './tab.component.html',
-  styleUrls: ['./tab.component.css'],
+  styleUrls: ['./tab.component.scss'],
 })
 export class TabComponent {
   @Input() title!: string

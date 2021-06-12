@@ -18,11 +18,11 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     dataServiceSpy = jasmine.createSpyObj('DataService', ['get'])
-    dataServiceSpy.get.and.returnValue(todos)
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, AppModule],
       providers: [{ provide: DataService, useValue: dataServiceSpy }],
     }).compileComponents()
+    dataServiceSpy.get.and.returnValue(todos)
   })
 
   beforeEach(() => {

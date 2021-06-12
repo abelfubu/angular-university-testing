@@ -4,7 +4,7 @@ import { TabComponent } from '../tab/tab.component'
 @Component({
   selector: 'lib-tab-group',
   templateUrl: './tab-group.component.html',
-  styleUrls: ['./tab-group.component.css'],
+  styleUrls: ['./tab-group.component.scss'],
 })
 export class TabGroupComponent implements OnInit {
   @ContentChildren(TabComponent)
