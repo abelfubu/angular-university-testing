@@ -1,35 +1,35 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { RouterTestingModule } from '@angular/router/testing'
+import { of } from 'rxjs'
+import { AppComponent } from './app.component'
+import { AppModule } from './app.module'
+import { DataService } from './services/data.service'
 
 describe('AppComponent', () => {
+  let component: AppComponent
+  let fixture: ComponentFixture<AppComponent>
+
   beforeEach(async () => {
+    const dataService = jasmine.createSpyObj('DataService', ['get'])
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  });
+      imports: [RouterTestingModule, AppModule],
+      providers: [{ provide: DataService, useValue: dataService }],
+    }).compileComponents()
+  })
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent)
+    component = fixture.componentInstance
+    component.todos$ = of([])
+    fixture.detectChanges()
+  })
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'angular-university-testing'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-university-testing');
-  });
+    expect(component).toBeTruthy()
+  })
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-university-testing app is running!');
-  });
-});
+    const compiled = fixture.nativeElement
+    expect(compiled.querySelector('h1').textContent).toContain('ABELFUBU')
+  })
+})

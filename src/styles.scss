@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  font-family: 'Raleway', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  font-weight: 300;
+}
+
+:root {
+  font-size: 22px;
+}
+
+body {
+  background-color: rgb(27, 16, 16);
+  color: #fff;
+  padding: 2rem 8vw;
+}
