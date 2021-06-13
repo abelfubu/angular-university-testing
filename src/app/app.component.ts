@@ -3,7 +3,7 @@ import { DataService } from './services/data.service'
 
 @Component({
   selector: 'au-test-root',
-  template: ` <h1>ABELFUBU</h1>
+  template: `<h1>ABELFUBU</h1>
     <ng-container *ngIf="todos$ | async as todos">
       <lib-tab-group>
         <lib-tab title="Todos">

@@ -1,6 +1,13 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
+import {
+  ComponentFixture,
+  fakeAsync,
+  flushMicrotasks,
+  TestBed,
+  tick,
+} from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 import { of } from 'rxjs'
+import { delay } from 'rxjs/operators'
 import { AppComponent } from './app.component'
 import { AppModule } from './app.module'
 import { DataService } from './services/data.service'
@@ -44,4 +51,19 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('lib-tab-group')).toBeTruthy()
     expect(compiled.querySelectorAll('lib-tab').length).toEqual(3)
   })
+
+  it('Should display content when tab is clicked', () => {
+    const tabs = compiled.querySelectorAll('lib-tab-group, li')
+    tabs[2].click()
+    fixture.detectChanges()
+    expect(compiled.querySelectorAll('h1')[1].textContent).toEqual('Good bye')
+  })
+
+  it('Should test an observable', fakeAsync(() => {
+    let test = false
+    const test$ = of(test).pipe(delay(500))
+    test$.subscribe(() => (test = true))
+    tick(500)
+    expect(test).toBeTrue()
+  }))
 })
