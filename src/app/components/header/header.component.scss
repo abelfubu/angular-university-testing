@@ -1,0 +1,55 @@
+@use "colors" as c;
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  padding: 0 7vw;
+}
+
+:host > * {
+  margin: 0 1rem;
+}
+
+i {
+  font-size: 2rem;
+  color: map-get(c.$primary, 400);
+}
+
+nav {
+  flex: 1;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  justify-content: flex-end;
+}
+
+li {
+  padding-left: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    color: map-get($map: c.$primary, $key: 400);
+  }
+}
+
+input {
+  padding-left: 2.2rem;
+}
+
+.icon {
+  position: relative;
+
+  &::after {
+    content: '\f002';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0.8rem;
+    top: 0.6rem;
+    color: map-get($map: c.$primary, $key: 400a);
+  }
+}

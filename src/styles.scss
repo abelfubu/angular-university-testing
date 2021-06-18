@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@use "theme/colors" as *;
+@use "theme" as *;
+
 * {
   font-family: 'Raleway', sans-serif;
   box-sizing: border-box;
@@ -15,7 +18,6 @@
 }
 
 body {
-  background-color: rgb(27, 16, 16);
+  background-color: map-get($map: $dark, $key: 400);
   color: #fff;
-  padding: 2rem 8vw;
 }

@@ -1,0 +1,18 @@
+@use "colors" as c;
+
+input:not([type='checkbox']) {
+  font-size: 1.2rem;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  box-shadow: 0 0 0 3px map-get($map: c.$primary, $key: 400a);
+  border-radius: 4px;
+  padding: 0.4rem 1rem;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+
+  &:focus,
+  &:hover {
+    box-shadow: 0 0 0 3px map-get($map: c.$primary, $key: 400);
+  }
+}

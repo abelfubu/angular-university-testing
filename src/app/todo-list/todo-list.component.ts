@@ -15,6 +15,7 @@ import { Todo } from '@models/todo'
         display: flex;
         align-items: center;
       }
+
       input {
         transform: scale(2) translateY(2px);
         margin-right: 1rem;
