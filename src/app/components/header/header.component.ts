@@ -22,7 +22,6 @@ import { debounceTime } from 'rxjs/operators'
 })
 export class HeaderComponent {
   input = new FormControl('')
-  @Output() search = this.input.valueChanges.pipe(debounceTime(400))
 
-  ngOnInit() {}
+  @Output() valueChange = this.input.valueChanges.pipe(debounceTime(400))
 }

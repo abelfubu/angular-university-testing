@@ -1,12 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { Todo } from '@models/todo'
 
 @Component({
   selector: 'au-test-todo-list',
   template: `
     <div *ngFor="let todo of todos">
-      <input type="checkbox" [checked]="todo.completed" />
-      <h1>{{ todo.title }}</h1>
+      <lib-checkbox
+        [checked]="todo.completed"
+        (checkedValue)="log($event)"
+      ></lib-checkbox>
+      <p>{{ todo.title | titlecase }}</p>
     </div>
   `,
   styles: [
@@ -14,19 +17,19 @@ import { Todo } from '@models/todo'
       div {
         display: flex;
         align-items: center;
+        padding: 0.2rem 0;
       }
 
-      input {
-        transform: scale(2) translateY(2px);
-        margin-right: 1rem;
+      lib-checkbox {
+        margin-right: 0.5rem;
       }
     `,
   ],
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
   @Input() todos!: Todo[]
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  log(event: boolean) {
+    console.log(event)
+  }
 }

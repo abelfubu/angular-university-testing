@@ -4,13 +4,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@models/*": [
-        "src/app/models/*"
-      ],
-      "tabs": [
-        "dist/tabs/tabs",
-        "dist/tabs"
-      ]
+      "@models/*": ["src/app/models/*"],
+      "@components/*": ["src/app/components/*"],
+      "checkbox": ["dist/checkbox/checkbox", "dist/checkbox"],
+      "tabs": ["dist/tabs/tabs", "dist/tabs"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

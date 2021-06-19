@@ -3,7 +3,9 @@ import { DataService } from './services/data.service'
 
 @Component({
   selector: 'au-test-root',
-  template: `<au-test-header (search)="handleSearch($event)"></au-test-header>
+  template: `<au-test-header
+      (valueChange)="handleSearch($event)"
+    ></au-test-header>
     <div class="container">
       <h1>ABELFUBU</h1>
       <ng-container *ngIf="todos$ | async as todos">

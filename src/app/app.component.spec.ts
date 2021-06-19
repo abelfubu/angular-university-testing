@@ -1,11 +1,9 @@
 import {
   ComponentFixture,
   fakeAsync,
-  flushMicrotasks,
   TestBed,
   tick,
 } from '@angular/core/testing'
-import { RouterTestingModule } from '@angular/router/testing'
 import { of } from 'rxjs'
 import { delay } from 'rxjs/operators'
 import { AppComponent } from './app.component'
@@ -26,7 +24,7 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     dataServiceSpy = jasmine.createSpyObj('DataService', ['get'])
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, AppModule],
+      imports: [AppModule],
       providers: [{ provide: DataService, useValue: dataServiceSpy }],
     }).compileComponents()
     dataServiceSpy.get.and.returnValue(todos)
@@ -53,8 +51,8 @@ describe('AppComponent', () => {
   })
 
   it('Should display content when tab is clicked', () => {
-    const tabs = compiled.querySelectorAll('lib-tab-group, li')
-    tabs[2].click()
+    const tab = compiled.querySelectorAll('lib-tab-group li')
+    tab[1].click()
     fixture.detectChanges()
     expect(compiled.querySelectorAll('h1')[1].textContent).toEqual('Good bye')
   })
