@@ -1,9 +1,8 @@
 @use "colors" as c;
+@use "mixins" as m;
 
 :host {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include m.flex;
   height: 4rem;
   padding: 0 7vw;
 }
@@ -22,9 +21,8 @@ nav {
 }
 
 ul {
-  display: flex;
   list-style: none;
-  justify-content: flex-end;
+  @include m.flex(flex-end);
 }
 
 li {

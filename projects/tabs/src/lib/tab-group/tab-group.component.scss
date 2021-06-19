@@ -1,7 +1,10 @@
+@use "colors";
+
 :host {
   display: block;
   border-radius: 4px;
 }
+
 ul {
   margin: 0;
   padding: 0;
@@ -14,12 +17,13 @@ li {
   transition: border-color 200ms ease-in-out, background-color 200ms ease-in-out;
   padding: 18px 22px 12px;
   cursor: pointer;
-  border-bottom: 4px;
+  border: 0.5px solid map-get($map: colors.$primary, $key: 400a);
+  border-radius: 8px 8px 0 0;
 }
 
 li.selected {
-  border-bottom: 1px solid #00ccff;
-  background-color: #00ccff20;
+  border-bottom: 1px solid map-get($map: colors.$primary, $key: 400);
+  background-color: map-get($map: colors.$primary, $key: 400a);
 }
 
 @media (max-width: 800px) {

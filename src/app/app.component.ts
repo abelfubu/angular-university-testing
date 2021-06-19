@@ -3,7 +3,7 @@ import { DataService } from './services/data.service'
 
 @Component({
   selector: 'au-test-root',
-  template: `<au-test-header></au-test-header>
+  template: `<au-test-header (search)="handleSearch($event)"></au-test-header>
     <div class="container">
       <h1>ABELFUBU</h1>
       <ng-container *ngIf="todos$ | async as todos">
@@ -42,4 +42,8 @@ export class AppComponent {
   todos$ = this.dataService.get()
 
   constructor(private dataService: DataService) {}
+
+  handleSearch(value: string) {
+    console.log(value)
+  }
 }
