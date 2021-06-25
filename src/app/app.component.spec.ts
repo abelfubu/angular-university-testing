@@ -1,14 +1,24 @@
+import { Location, LocationStrategy } from '@angular/common'
+import { MockLocationStrategy, SpyLocation } from '@angular/common/testing'
+import { NO_ERRORS_SCHEMA } from '@angular/core'
 import {
   ComponentFixture,
   fakeAsync,
   TestBed,
   tick,
 } from '@angular/core/testing'
+import { ReactiveFormsModule } from '@angular/forms'
+import { By } from '@angular/platform-browser'
+import { RouterOutlet } from '@angular/router'
+import { RouterTestingModule } from '@angular/router/testing'
+import { HeaderComponent } from '@components/header/header.component'
+import { CheckboxModule } from 'projects/checkbox/src/public-api'
+import { TabsModule } from 'projects/tabs/src/public-api'
 import { of } from 'rxjs'
 import { delay } from 'rxjs/operators'
 import { AppComponent } from './app.component'
-import { AppModule } from './app.module'
 import { DataService } from './services/data.service'
+import { TodoListComponent } from './todo-list/todo-list.component'
 
 describe('AppComponent', () => {
   let component: AppComponent
@@ -24,8 +34,19 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     dataServiceSpy = jasmine.createSpyObj('DataService', ['get'])
     await TestBed.configureTestingModule({
-      imports: [AppModule],
-      providers: [{ provide: DataService, useValue: dataServiceSpy }],
+      declarations: [AppComponent],
+      imports: [
+        RouterTestingModule.withRoutes([]),
+        TabsModule,
+        CheckboxModule,
+        ReactiveFormsModule,
+      ],
+      providers: [
+        { provide: Location, useClass: SpyLocation },
+        { provide: DataService, useValue: dataServiceSpy },
+        { provide: LocationStrategy, useClass: MockLocationStrategy },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents()
     dataServiceSpy.get.and.returnValue(todos)
   })
@@ -64,4 +85,11 @@ describe('AppComponent', () => {
     tick(500)
     expect(test).toBeTrue()
   }))
+
+  it('should have a router outlet', () => {
+    const el = fixture.debugElement.query(By.directive(RouterOutlet))
+    const router = compiled.querySelector('router-outlet')
+    expect(router).toBeTruthy()
+    expect(el).toBeTruthy()
+  })
 })

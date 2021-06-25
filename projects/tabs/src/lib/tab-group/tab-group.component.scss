@@ -9,15 +9,16 @@ ul {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   list-style-type: none;
+  border-bottom: 5px solid map-get($map: colors.$primary, $key: 400);
 }
 
 li {
   transition: border-color 200ms ease-in-out, background-color 200ms ease-in-out;
   padding: 18px 22px 12px;
   cursor: pointer;
-  border: 0.5px solid map-get($map: colors.$primary, $key: 400a);
+  border: 2px solid map-get($map: colors.$primary, $key: 400a);
   border-radius: 8px 8px 0 0;
 }
 

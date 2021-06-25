@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
-
 import { HeaderComponent } from './header.component'
 
 describe('HeaderComponent', () => {
@@ -37,5 +36,15 @@ describe('HeaderComponent', () => {
   it('should have a menu', () => {
     const menu = fixture.nativeElement.querySelector('[data-test="menu"]')
     expect(menu).toBeTruthy()
+  })
+
+  xit('should emit an observable when the search input value changes', (done) => {
+    const text = 'cuandoelgrajovuelabajo'
+    const input = fixture.nativeElement.querySelector('input')
+    input.value = text
+    component.valueChange.subscribe((val) => {
+      expect(val).toBe(text)
+      done()
+    })
   })
 })

@@ -21,11 +21,7 @@ import { DataService } from './services/data.service'
             </p>
           </lib-tab>
           <lib-tab title="Tab3">
-            <h1>Esto es tab 3</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-              est at voluptas.
-            </p>
+            <au-test-post-list></au-test-post-list>
           </lib-tab>
         </lib-tab-group>
       </ng-container>

@@ -8,10 +8,13 @@ import { AppComponent } from './app.component'
 import { TodoListComponent } from './todo-list/todo-list.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { CheckboxModule } from 'projects/checkbox/src/public-api'
-import { HeaderComponent } from '@components/header/header.component'
+import { HeaderComponent } from '@components/header/header.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { ButtonComponent } from './components/button/button.component';
+import { DialogComponent } from './components/dialog/dialog.component'
 
 @NgModule({
-  declarations: [AppComponent, TodoListComponent, HeaderComponent],
+  declarations: [AppComponent, TodoListComponent, HeaderComponent, PostListComponent, ButtonComponent, DialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

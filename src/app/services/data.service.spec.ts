@@ -20,9 +20,9 @@ describe(DataService.name, () => {
   })
 
   it('Should get a list of todos', () => {
-    const todo = { id: 1, title: 'Buy Chocolate', completed: false }
+    const fakeTodo = { id: 1, title: 'Buy Chocolate', completed: false }
 
-    dataService.get().subscribe(todos => {
+    dataService.get().subscribe((todos) => {
       expect(todos).toBeTruthy('No courses returned')
       expect(todos.length).toBe(1)
       expect(todos[0].id).toBe(1)
@@ -30,32 +30,32 @@ describe(DataService.name, () => {
 
     const req = httpTestingController.expectOne(environment.url)
     expect(req.request.method).toEqual('GET')
-    req.flush([todo])
+    req.flush([fakeTodo])
   })
 
   it('Should get a todo by its id', () => {
-    const todo = { id: 1, title: 'Buy Chocolate', completed: false }
+    const fakeTodo = { id: 1, title: 'Buy Chocolate', completed: false }
 
-    dataService.getById(1).subscribe(todo => {
+    dataService.getById(1).subscribe((todo) => {
       expect(todo).toBeTruthy('No courses returned')
       expect(todo.id).toBe(1)
     })
 
     const req = httpTestingController.expectOne(environment.url + '1')
     expect(req.request.method).toEqual('GET')
-    req.flush(todo)
+    req.flush(fakeTodo)
   })
 
   it('Should save the course data', () => {
-    const todo = { id: 1, title: 'Feed Cat', completed: false }
-    dataService.put(1, todo).subscribe(todo => {
+    const fakeTodo = { id: 1, title: 'Feed Cat', completed: false }
+    dataService.put(1, fakeTodo).subscribe((todo) => {
       expect(todo.id).toEqual(1)
     })
 
     const req = httpTestingController.expectOne(environment.url + '1')
     expect(req.request.method).toEqual('PUT')
     expect(req.request.body.title).toEqual('Feed Cat')
-    req.flush(todo)
+    req.flush(fakeTodo)
   })
 
   it('Should give an error if save todo fails', () => {
